@@ -1,1 +1,4 @@
 .idea
+db.sqlite3
+products/__pycache__/
+exam/__pycache__/urls.cpython-310.pyc
