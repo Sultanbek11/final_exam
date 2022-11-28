@@ -30,3 +30,5 @@ class Supply(models.Model):
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE, related_name='supply')
     date = models.DateTimeField(auto_now_add=True)
     quantity = models.PositiveIntegerField()
+
+    def remainder(self):

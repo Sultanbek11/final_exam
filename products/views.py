@@ -1,18 +1,20 @@
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.decorators import action
 from .models import Shop, Product
-from .serializers import ShopSerializer, ShopsProductSerializer, ProductCreateSerializer
+from .serializers import ShopSerializer, BuyProductSerializer
 
-
-class ShopListView(ListAPIView):
-    queryset = Shop.objects.all()
+class ShopViewSet(ModelViewSet):
     serializer_class = ShopSerializer
-
-
-class ShopDetailView(RetrieveAPIView):
     queryset = Shop.objects.all()
-    serializer_class = ShopsProductSerializer
 
 
-class ProductCreateAPIView(CreateAPIView):
-    serializer_class = ProductCreateSerializer
-    queryset = Product
+    @action(detail=True, methods=['POST'], name='buy', url_name='buy')
+    def buy(self, pk):
+        buy = Product.objects.get(pk=pk)
+        serializer = BuyProductSerializer.get_obj(pk=pk)
+        if serializer.is_valid():
+            prod = Product.objects.get(pk)
+            prod =
+
+
